@@ -4,9 +4,9 @@ const tax = document.querySelector(".tax")
 const total = document.querySelector(".total")
 
 
+
 function updateShoppingCart(product, price, isIncreasing) {
-    const plusBtn = document.querySelector(`.${product}-plus-btn`)
-    const minusBtn = document.querySelector(`.${product}-minus-btn`)
+
     const itemCount = document.querySelector(`.${product}-count`)
     const productPrice = document.querySelector(`.${product}-price`)
     let itemCountValue = itemCount.value;
@@ -27,11 +27,15 @@ function updateShoppingCart(product, price, isIncreasing) {
     productPrice.textContent = `$${newProductPrice}`;
 
     //invoice
-    let newSubtotal = newProductPrice;
-    let newTaxAmount = newProductPrice / 10;
+    const phonePrice = document.querySelector(".phone-price")
+    const casePrice = document.querySelector(".case-price")
+    let newPhonePrice = Number(phonePrice.textContent.slice(1))
+    let newCasePrice = Number(casePrice.textContent.slice(1))
+    let newSubtotal = newPhonePrice + newCasePrice;
+    let newTaxAmount = newSubtotal / 10;
     let newTotal = newSubtotal + newTaxAmount;
 
-    subtotal.textContent = `$${newProductPrice}`;
+    subtotal.textContent = `$${newSubtotal}`;
     tax.textContent = `$${newTaxAmount}`;
     total.textContent = `$${newTotal}`;
 
